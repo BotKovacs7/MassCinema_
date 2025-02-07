@@ -1,0 +1,1 @@
+from Adatbázis import adatbazisfuggveny
