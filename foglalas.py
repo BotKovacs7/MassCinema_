@@ -1,3 +1,4 @@
+from Adatbázis import adatbazisfuggveny
 import mysql.connector
 import mysql
 
