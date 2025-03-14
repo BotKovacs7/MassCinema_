@@ -54,26 +54,26 @@ def open_main_window():
     global root
     root = tk.Tk()
     root.title("Mozi Filmek")
-    root.geometry("600x400")
+    root.geometry("1000x800")
     root.config(bg="lightblue")
 
 
     style = ttk.Style()
     style.configure("TButton",
-                    font=('Arial', 12, 'bold'),
+                    font=('Arial', 18, 'bold'),
                     background="skyblue",
                     foreground="black",
                     padding=10)
     style.configure("TLabel",
-                    font=('Arial', 12),
+                    font=('Arial', 18),
                     background="lightblue",
                     foreground="black")
 
     films = get_films()
 
     for film in films:
-        button = ttk.Button(root, text=film[1], width=40, command=lambda f=film: open_film_window(f))
-        button.pack(pady=10)
+        button = ttk.Button(root, text=film[1], width=50, command=lambda f=film: open_film_window(f))
+        button.pack(pady=20)
 
     root.mainloop()
 
