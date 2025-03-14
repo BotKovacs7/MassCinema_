@@ -39,7 +39,7 @@ def open_film_window(film):
     title_label = ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="lightblue")
     title_label.pack(pady=20)
 
-    details_label = ttk.Label(film_window, text=f"Év: {film[2]}\nMűfaj: {film[3]}\nJátékidő: {film[4]}\nTerem kapacitása: {film[5]}",
+    details_label = ttk.Label(film_window, text=f"Megjelenés: {film[2]}\nMűfaj: {film[3]}\nJátékidő: {film[4]}\nTerem kapacitása: {film[5]}",
                               font=('Arial', 16), background="lightblue")
     details_label.pack(pady=10)
 
