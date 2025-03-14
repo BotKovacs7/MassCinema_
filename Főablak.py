@@ -57,7 +57,7 @@ def open_main_window():
     root.geometry("600x400")
     root.config(bg="lightblue")
 
-    # ttk stílus alkalmazása
+
     style = ttk.Style()
     style.configure("TButton",
                     font=('Arial', 12, 'bold'),
