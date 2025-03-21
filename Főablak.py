@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import mysql.connector
+from tkinter import *
 
 def connect_db():
     conn = mysql.connector.connect(
@@ -56,6 +57,27 @@ def open_main_window():
     root.title("Mozi Filmek")
     root.geometry("1000x800")
     root.config(bg="lightblue")
+    
+    root.columnconfigure(0, weight=1)
+    root.columnconfigure(1, weight=1)
+
+    root.rowconfigure(0, weight=1)
+    root.rowconfigure(1, weight=6)
+    root.rowconfigure(2, weight=1)
+    root.rowconfigure(3, weight=18)
+
+    col1 = Frame(root, bg="grey") 
+    col1.grid(row=0, column=0, rowspan=4, sticky="nsew")  
+    col1.columnconfigure(0, weight=1)
+    col1.rowconfigure(0, weight=1)
+    Label(col1, text="Col 1 - Full Width", bg="grey", font=("Arial", 16)).grid(sticky="nsew")
+    
+    col2 = Frame(root, bg="brown") 
+    col2.grid(row=0, column=1, rowspan=4, sticky="nsew")  
+    col2.columnconfigure(0, weight=1)
+    col2.rowconfigure(0, weight=1)
+    Label(col2, text="Col 2 - Full Width", bg="brown", font=("Arial", 16)).grid(sticky="nsew")
+
 
 
     style = ttk.Style()
@@ -64,6 +86,7 @@ def open_main_window():
                     background="skyblue",
                     foreground="black",
                     padding=10)
+    
     style.configure("TLabel",
                     font=('Arial', 18),
                     background="lightblue",
@@ -71,9 +94,9 @@ def open_main_window():
 
     films = get_films()
 
-    for film in films:
-        button = ttk.Button(root, text=film[1], width=50, command=lambda f=film: open_film_window(f))
-        button.pack(pady=20)
+    # for film in films:
+    #     button = ttk.Button(root, text=film[1], width=50, command=lambda f=film: open_film_window(f))
+    #     button.pack(pady=20)
 
     root.mainloop()
 
