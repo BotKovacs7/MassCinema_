@@ -38,18 +38,18 @@ def open_film_window(film):
     film_window.config(bg="lightblue")
 
     title_label = ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="lightblue")
-    title_label.pack(pady=20)
+    title_label.grid(pady=20)
 
     details_label = ttk.Label(film_window, text=f"Megjelenés: {film[2]}\nMűfaj: {film[3]}\nJátékidő: {film[4]}\nTerem kapacitása: {film[5]}",
                               font=('Arial', 16), background="lightblue")
-    details_label.pack(pady=10)
+    details_label.grid(pady=10)
 
     def go_back():
         film_window.destroy()
         open_main_window()
 
     back_button = ttk.Button(film_window, text="Vissza a filmek listájához", width=30, command=go_back)
-    back_button.pack(pady=20)
+    back_button.grid(pady=20)
 
 def open_main_window():
     global root
@@ -58,25 +58,28 @@ def open_main_window():
     root.geometry("1000x800")
     root.config(bg="lightblue")
     
-    root.columnconfigure(0, weight=1)
-    root.columnconfigure(1, weight=1)
+    root.columnconfigure(0, weight=1, minsize=250)
+    root.columnconfigure(1, weight=1, minsize=250)
 
     root.rowconfigure(0, weight=1)
     root.rowconfigure(1, weight=6)
     root.rowconfigure(2, weight=1)
     root.rowconfigure(3, weight=18)
 
-    col1 = Frame(root, bg="grey") 
-    col1.grid(row=0, column=0, rowspan=4, sticky="nsew")  
-    col1.columnconfigure(0, weight=1)
-    col1.rowconfigure(0, weight=1)
-    Label(col1, text="Col 1 - Full Width", bg="grey", font=("Arial", 16)).grid(sticky="nsew")
     
-    col2 = Frame(root, bg="brown") 
+    col1 = Frame(root, bg="grey", width=500, height=800)
+    col1.grid(row=0, column=0, rowspan=4, sticky="nsew")  
+    col1.grid_propagate(False) 
+    Label(col1, text="Col 1 - Fixed Width", bg="grey", font=("Arial", 16)).grid(sticky="nsew")
+    
+    
+    col2 = Frame(root, bg="brown", width=500, height=800)
     col2.grid(row=0, column=1, rowspan=4, sticky="nsew")  
-    col2.columnconfigure(0, weight=1)
-    col2.rowconfigure(0, weight=1)
-    Label(col2, text="Col 2 - Full Width", bg="brown", font=("Arial", 16)).grid(sticky="nsew")
+    col2.grid_propagate(False)
+    Label(col2, text="Col 2 - Fixed Width", bg="brown", font=("Arial", 16)).grid(sticky="nsew")
+
+    root.mainloop()
+
 
 
 
@@ -95,8 +98,8 @@ def open_main_window():
     films = get_films()
 
     # for film in films:
-    #     button = ttk.Button(root, text=film[1], width=50, command=lambda f=film: open_film_window(f))
-    #     button.pack(pady=20)
+    #       button = ttk.Button(root, text=film[1], width=20, command=lambda f=film: open_film_window(f))
+    #       button.grid(pady=20)
 
     root.mainloop()
 
