@@ -74,7 +74,7 @@ def open_main_window():
 
     films = get_films()
     mid = len(films) // 2
-    films_col1 = films[:mid]
+    films_col1 = films[:mid+1]
     films_col2 = films[mid:]
 
     for film in films_col1:
