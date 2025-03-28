@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-import PIL
 import mysql.connector
 
 def connect_db():
@@ -25,12 +24,12 @@ def open_film_window(film):
     film_window = tk.Toplevel()
     film_window.title(film[1])
     film_window.geometry("600x400")
-    film_window.config(bg="lightblue")
+    film_window.config(bg="#ECB189")
 
     
-    ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="lightblue").pack(pady=20)
+    ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="#ECB189").pack(pady=20)
     ttk.Label(film_window, text=f"Megjelenés: {film[2]}\nMűfaj: {film[3]}\nJátékidő: {film[4]} perc\nTerem kapacitása: {film[5]} fő",
-              font=('Arial', 16), background="lightblue").pack(pady=10)
+              font=('Arial', 16), background="#ECB189").pack(pady=10)
 
     
     def go_back():
@@ -44,7 +43,7 @@ def open_main_window():
     root = tk.Tk()
     root.title("Mozi Filmek")
     root.geometry("1000x800")
-    root.config(bg="lightblue")
+    root.config(bg="#ECB189")
 
     
     style = ttk.Style()
