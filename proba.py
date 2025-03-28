@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
-
+import PIL
 import mysql.connector
 
 def connect_db():
@@ -63,17 +63,17 @@ def open_main_window():
     root.columnconfigure(1, weight=1)
     root.rowconfigure(0, weight=1)
 
-    col1 = tk.Frame(root, bg="grey", width=500, height=800)
+    col1 = tk.Frame(root, bg="#ECB189", width=500, height=800)
     col1.grid(row=0, column=0, sticky="nsew")
-    tk.Label(col1, text="Vetítésre váró filmek", bg="grey", font=("Arial", 16)).pack(pady=10)
+    tk.Label(col1, bg="#ECB189", font=("Arial", 16)).pack(pady=10)
 
 
-    col2 = tk.Frame(root, bg="brown", width=500, height=800)
+    col2 = tk.Frame(root, bg="#ECB189", width=500, height=800)
     col2.grid(row=0, column=1, sticky="nsew")
-    tk.Label(col2, text="Vetítésre váró filmek", bg="brown", font=("Arial", 16)).pack(pady=10)
+    tk.Label(col2,  bg="#ECB189", font=("Arial", 16)).pack(pady=10)
 
     films = get_films()
-    mid = len(films) // 2
+    mid = len(films) // 2   
     films_col1 = films[:mid+1]
     films_col2 = films[mid:]
 
