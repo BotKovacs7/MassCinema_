@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import mysql.connector
+from PIL import Image, ImageTk
 
 def connect_db():
     return mysql.connector.connect(
@@ -76,11 +77,12 @@ def open_main_window():
     films_col1 = films[:mid+1]
     films_col2 = films[mid:]
 
-    for film in films_col1:
-        ttk.Button(col1, text=film[1], width=30, command=lambda f=film: open_film_window(f)).pack(pady=10)
+    
+    for i in range(1,5):
+        ttk.Button(col1, image=ImageTk.PhotoImage(Image.open(f"./images/movie{i}.jpg")), width=30, command=lambda f=films_col1[i]: open_film_window(f)).pack(pady=10)
 
-    for film in films_col2:
-        ttk.Button(col2, text=film[1], width=30, command=lambda f=film: open_film_window(f)).pack(pady=10)
+    for i in range(5,8):
+        ttk.Button(col2, image=ImageTk.PhotoImage(Image.open(f"./images/movie{i}.jpg")), width=30, command=lambda f=films_col2[i]: open_film_window(f)).pack(pady=10)
 
     root.mainloop()
 
