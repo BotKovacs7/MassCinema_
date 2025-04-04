@@ -87,7 +87,7 @@ def open_main_window():
     for idx, film in enumerate(films_col1):
         image = load_resized_image(f"./images/movie{idx+1}.jpg")
         btn = tk.Button(col1, image=image, width=125, height=200, command=lambda f=film: open_film_window(f))
-        btn.image = image  
+        btn.image = image 
         btn.pack(pady=10)
 
     for idx, film in enumerate(films_col2):
