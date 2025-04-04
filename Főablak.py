@@ -1,16 +1,16 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import mysql.connector
-from tkinter import *
+import jegyfoglalas
+from PIL import Image, ImageTk
 
 def connect_db():
-    conn = mysql.connector.connect(
-        host="localhost",       
-        user="root",            
-        password="",            
-        database="masscinema"   
+    return mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="masscinema"
     )
-    return conn
 
 def get_films():
     conn = connect_db()
@@ -20,68 +20,35 @@ def get_films():
     conn.close()
     return films
 
-def show_film_details(film):
-    details = f"Film címe: {film[1]}\n"
-    details += f"Év: {film[2]}\n"
-    details += f"Műfaj: {film[3]}\n"
-    details += f"Játékidő: {film[4]}\n"
-    details += f"Terem kapacitása: {film[5]}\n"
-    messagebox.showinfo(film[1], details)
-
 def open_film_window(film):
-
-    root.destroy()
+    root.withdraw()  
 
     film_window = tk.Toplevel()
     film_window.title(film[1])
     film_window.geometry("600x400")
-    film_window.config(bg="lightblue")
+    film_window.config(bg="#ECB189")
 
-    title_label = ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="lightblue")
-    title_label.grid(pady=20)
-
-    details_label = ttk.Label(film_window, text=f"Megjelenés: {film[2]}\nMűfaj: {film[3]}\nJátékidő: {film[4]}\nTerem kapacitása: {film[5]}",
-                              font=('Arial', 16), background="lightblue")
-    details_label.grid(pady=10)
+    ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="#ECB189").pack(pady=20)
+    ttk.Label(film_window, text=f"Megjelenés: {film[2]}\nMűfaj: {film[3]}\nJátékidő: {film[4]} perc\nTerem kapacitása: {film[5]} fő",
+              font=('Arial', 16), background="#ECB189").pack(pady=10)
 
     def go_back():
         film_window.destroy()
-        open_main_window()
+        root.deiconify() 
 
-    back_button = ttk.Button(film_window, text="Vissza a filmek listájához", width=30, command=go_back)
-    back_button.grid(pady=20)
+    def foglalas():
+        film_window.destroy()
+        jegyfoglalas.open() 
+
+    ttk.Button(film_window, text="Foglalás", width=30, command=foglalas).pack(pady=20)
+    ttk.Button(film_window, text="Vissza a filmekhez", width=30, command=go_back).pack(pady=20)
 
 def open_main_window():
     global root
     root = tk.Tk()
     root.title("Mozi Filmek")
     root.geometry("1000x800")
-    root.config(bg="lightblue")
-    
-    root.columnconfigure(0, weight=1, minsize=250)
-    root.columnconfigure(1, weight=1, minsize=250)
-
-    root.rowconfigure(0, weight=1)
-    root.rowconfigure(1, weight=6)
-    root.rowconfigure(2, weight=1)
-    root.rowconfigure(3, weight=18)
-
-    
-    col1 = Frame(root, bg="grey", width=500, height=800)
-    col1.grid(row=0, column=0, rowspan=4, sticky="nsew")  
-    col1.grid_propagate(False) 
-    Label(col1, text="Col 1 - Fixed Width", bg="grey", font=("Arial", 16)).grid(sticky="nsew")
-    
-    
-    col2 = Frame(root, bg="brown", width=500, height=800)
-    col2.grid(row=0, column=1, rowspan=4, sticky="nsew")  
-    col2.grid_propagate(False)
-    Label(col2, text="Col 2 - Fixed Width", bg="brown", font=("Arial", 16)).grid(sticky="nsew")
-
-    root.mainloop()
-
-
-
+    root.config(bg="#ECB189")
 
     style = ttk.Style()
     style.configure("TButton",
@@ -95,11 +62,39 @@ def open_main_window():
                     background="lightblue",
                     foreground="black")
 
-    films = get_films()
+    root.columnconfigure(0, weight=1)
+    root.columnconfigure(1, weight=1)
+    root.rowconfigure(0, weight=1)
 
-    # for film in films:
-    #       button = ttk.Button(root, text=film[1], width=20, command=lambda f=film: open_film_window(f))
-    #       button.grid(pady=20)
+    col1 = tk.Frame(root, bg="#ECB189", width=500, height=800)
+    col1.grid(row=0, column=0, sticky="nsew")
+    tk.Label(col1, bg="#ECB189", font=("Arial", 16)).pack(pady=10)
+
+    col2 = tk.Frame(root, bg="#ECB189", width=500, height=800)
+    col2.grid(row=0, column=1, sticky="nsew")
+    tk.Label(col2,  bg="#ECB189", font=("Arial", 16)).pack(pady=10)
+
+    films = get_films()
+    mid = len(films) // 2   
+    films_col1 = films[:mid]
+    films_col2 = films[mid:]
+
+    def load_resized_image(image_path):
+        image = Image.open(image_path)
+        image = image.resize((125, 200), Image.LANCZOS) 
+        return ImageTk.PhotoImage(image)
+
+    for idx, film in enumerate(films_col1):
+        image = load_resized_image(f"./images/movie{idx+1}.jpg")
+        btn = tk.Button(col1, image=image, width=125, height=200, command=lambda f=film: open_film_window(f))
+        btn.image = image 
+        btn.pack(pady=10)
+
+    for idx, film in enumerate(films_col2):
+        image = load_resized_image(f"./images/movie{idx+mid+1}.jpg")
+        btn = tk.Button(col2, image=image, width=125, height=200, command=lambda f=film: open_film_window(f))
+        btn.image = image 
+        btn.pack(pady=10)
 
     root.mainloop()
 
