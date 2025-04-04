@@ -24,7 +24,8 @@ INSERT INTO Termek (Terem_szam, Film_cime, Ev, Mufaj, Jatekido, Kapacitas) VALUE
 (4, 'Tenet', 2020, 'Akció', '150 min', 100),
 (5, 'The Matrix', 1999, 'Sci-Fi', '136 min', 200),
 (6, 'Inception', 2010, 'Akció', '148 min', 130),
-(7, 'The Dark Knight', 2008, 'Akció', '152 min', 180);
+(7, 'The Dark Knight', 2008, 'Akció', '152 min', 180),
+(7, 'Pókember', 2021, 'Akció', '148 min', 170);
 
 INSERT INTO Foglalasok (Foglalas_sorszam, Keresztnev, Vezeteknev, Teremszam, Szekszam) VALUES
 (1, 'Anna', 'Kovács', 1, 23),
@@ -33,4 +34,5 @@ INSERT INTO Foglalasok (Foglalas_sorszam, Keresztnev, Vezeteknev, Teremszam, Sze
 (4, 'Dóra', 'Kiss', 4, 30),
 (5, 'László', 'Horváth', 5, 15),
 (6, 'Zoltán', 'Nagy', 6, 25),
-(7, 'Eszter', 'Molnár', 7, 40);
+(7, 'Eszter', 'Molnár', 7, 40),
+(8, 'Aladár', 'Varga', 8, 60);
