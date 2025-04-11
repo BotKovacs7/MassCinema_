@@ -25,7 +25,7 @@ def open_film_window(film):
 
     film_window = tk.Toplevel()
     film_window.title(film[1])
-    film_window.geometry("600x400")
+    film_window.geometry("1300x1200")
     film_window.config(bg="#ECB189")
 
     ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="#ECB189").pack(pady=20)
