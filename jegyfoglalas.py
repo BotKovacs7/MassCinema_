@@ -1,6 +1,5 @@
 import tkinter as tk
 from tkinter import ttk
-import adatbekeres
 
 def select_seat(row, col):
     current_color = buttons[row][col].cget("bg")
