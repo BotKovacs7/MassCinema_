@@ -1,14 +1,15 @@
 
 from tkinter import *
 import sqlite3
-import FoglalásMySQL
+import jegyfoglalas
 
 root = Tk()
 root.title("Adatbázis létrehozása")
 root.geometry("700x550")
+root.config(bg="#ECB189")
 
 def submit():
-    conn = sqlite3.connect("sample_db.db")
+    conn = sqlite3.connect("masscinema.db")
     c = conn.cursor()
     c.execute("INSERT INTO foglalasok VALUES (:keresztnev, :vezeteknev)",
         {
@@ -24,7 +25,7 @@ def submit():
 
 
 def query():
-    conn = sqlite3.connect("sample_db.db")
+    conn = sqlite3.connect("masscinema.db")
     c = conn.cursor()   
     c.execute("SELECT *, oid FROM cimek")
     records = c.fetchall()
