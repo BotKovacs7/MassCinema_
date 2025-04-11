@@ -41,7 +41,7 @@ def open_film_window(film):
         jegyfoglalas.open()
 
     ttk.Button(film_window, text="Foglalás", width=30, command=foglalas).pack(pady=20)
-    ttk.Button(film_window, text="Vissza a filmekhez", width=30, command=go_back).pack(pady=20)
+    ttk.Button(film_window, text="Vissza aa filmekhez", width=30, command=go_back).pack(pady=20)
 
 def open_main_window():
     global root

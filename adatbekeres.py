@@ -15,6 +15,7 @@ def submit():
         {
             'keresztnev':l_name.get(),
             'vezeteknev':f_name.get(),
+            
         }
     )
     conn.commit()
@@ -45,8 +46,10 @@ def query():
 f_name = Entry(root, width=30)
 f_name.grid(row=0, column=1, padx=20)
 
+
 l_name = Entry(root, width=30)
 l_name.grid(row=1, column=1, padx=20)
+
 
 f_name_lbl = Label(root, text="Vezetéknév")
 f_name_lbl.grid(row=0, column=0)

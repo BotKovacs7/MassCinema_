@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import adatbekeres
 
 def select_seat(row, col):
     current_color = buttons[row][col].cget("bg")
@@ -25,6 +26,9 @@ def create_seat_layout(root):
                 row_buttons.append(btn)
         buttons.append(row_buttons)
 
+def bekeres():
+    adatbekeres.open()
+
 def open():
     foglalas_window = tk.Toplevel()
     foglalas_window.title("Jegyfoglalás")
@@ -42,6 +46,6 @@ def open():
     seat_frame.pack()
     create_seat_layout(seat_frame)
 
-    ttk.Button(foglalas_window, text="Foglalás", command=foglalas_window.destroy).pack(pady=20)
+    ttk.Button(foglalas_window, text="Foglalás", command= bekeres).pack(pady=20)
 
     foglalas_window.mainloop()
