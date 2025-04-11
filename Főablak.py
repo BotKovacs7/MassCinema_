@@ -25,7 +25,7 @@ def open_film_window(film):
 
     film_window = tk.Toplevel()
     film_window.title(film[1])
-    film_window.geometry("1000x800")
+    film_window.geometry("1000x1000")
     film_window.config(bg="#ECB189")
 
     ttk.Label(film_window, text=film[1], font=('Arial', 24, 'bold'), background="#ECB189").pack(pady=20)
@@ -47,7 +47,7 @@ def open_main_window():
     global root
     root = tk.Tk()
     root.title("Mozi Filmek")
-    root.geometry("1000x800")
+    root.geometry("1000x1000")
     root.config(bg="#ECB189")
 
     style = ttk.Style()
